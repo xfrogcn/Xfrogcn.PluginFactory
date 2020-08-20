@@ -2,8 +2,12 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.FileProviders;
 using PluginFactory;
+using PluginFactory.Abstractions;
+using System.Linq;
+using Microsoft.Extensions.Options;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -16,14 +20,9 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddOptions();
 
-            string pluginPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DEFAULT_PLUGIN_PATH);
+            var options = createDefaultOptions();
 
-            // 默认设置
-            services.Configure<PluginFactoryOptions>(options =>
-            {
-                options.PluginPath = pluginPath;
-                options.FileProvider = new PhysicalFileProvider(pluginPath);
-            });
+            services.AddPluginFactory(options);
 
             return services;
         }
@@ -35,17 +34,17 @@ namespace Microsoft.Extensions.DependencyInjection
                 throw new ArgumentNullException(nameof(configuration));
             }
 
-            services.AddPluginFactory();
             //注入配置
             PluginFactoryConfigration factoryConfigration = new PluginFactoryConfigration(configuration);
-            services.AddSingleton<PluginFactoryConfigration>(factoryConfigration);
+            services.TryAddSingleton(factoryConfigration);
+
             // 从配置中获取设置
-            services.Configure<PluginFactoryOptions>(options =>
-            {
-                options.ConfigFromConfigration(configuration);
-            });
+            PluginFactoryOptions options = createDefaultOptions();
+            options.ConfigFromConfigration(configuration);
 
+            services.AddPluginFactory(options);
 
+            
 
             return services;
         }
@@ -53,9 +52,79 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddPluginFactory(this IServiceCollection services, Action<PluginFactoryOptions> configureOptions)
         {
-            services.AddPluginFactory();
-            services.Configure<PluginFactoryOptions>(configureOptions);
+            PluginFactoryOptions options = createDefaultOptions();
+            if (configureOptions != null)
+            {
+                configureOptions(options);
+            }
+
+            services.AddPluginFactory(options);
+
             return services;
+        }
+
+
+        public static IServiceCollection AddPluginFactory(this IServiceCollection services, PluginFactoryOptions options)
+        {
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
+            services.AddOptions();
+
+            IPluginLoader loader = createPluginLoader(services, options);
+            // 载入器单例
+            services.TryAddSingleton(loader);
+            services.TryAddSingleton(options);
+
+            // 从配置中获取插件设置，以插件类型名称或插件别名作为配置键
+            services.TryAddSingleton(typeof(IPluginConfigrationProvider<>), typeof(PluginConfigrationProvider<>));
+
+            // 注入插件工厂
+            services.TryAddSingleton<IPluginFactory, DefaultPluginFactory>();
+            // 兼容托管服务，在宿主环境中自动调用开始和停止方法
+            services.AddHostedService((sp) =>
+            {
+                IPluginFactory factory = sp.GetRequiredService<IPluginFactory>();
+                return factory;
+            });
+
+            
+
+            return services;
+        }
+
+        private static PluginFactoryOptions createDefaultOptions()
+        {
+            string pluginPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, DEFAULT_PLUGIN_PATH);
+
+            // 默认设置
+            PluginFactoryOptions options = new PluginFactoryOptions()
+            {
+                PluginPath = pluginPath,
+                FileProvider = new PhysicalFileProvider(pluginPath)
+            };
+            return options;
+        }
+
+
+        private static IPluginLoader createPluginLoader(IServiceCollection services, PluginFactoryOptions options)
+        {
+            IPluginLoader loader = new DefaultPluginLoader(options, services);
+            loader.Load();
+            loader.Init();
+
+            // 注入配置映射
+            var list = loader.PluginList.Where(x => x.CanConfig).ToList();
+            foreach(PluginInfo pi in list)
+            {
+                Type cfgOptionsType = typeof(IConfigureOptions<>).MakeGenericType(pi.ConfigType);
+                Type impleType = typeof(PluginConfigrationOptions<,>).MakeGenericType(pi.PluginType, pi.ConfigType);
+                services.TryAddSingleton(cfgOptionsType, impleType);
+            }
+
+            return loader;
         }
     }
 }

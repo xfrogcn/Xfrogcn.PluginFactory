@@ -43,6 +43,11 @@ namespace PluginFactory.Abstractions
         public bool CanConfig { get; set; }
 
         /// <summary>
+        /// 是否支持Init
+        /// </summary>
+        public bool CanInit { get; set; }
+
+        /// <summary>
         /// 配置类型
         /// </summary>
         public Type ConfigType { get; set; }

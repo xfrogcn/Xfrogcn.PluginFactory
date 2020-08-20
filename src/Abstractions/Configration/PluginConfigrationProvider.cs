@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using PluginFactory.Abstractions;
 
-namespace PluginFactory
+namespace PluginFactory.Abstractions
 {
     /// <summary>
     /// PluginConfigrationProvider从 <seealso cref="PluginFactoryConfigration"/> 配置中获取配置
     /// 每个插件以插件类型全名称或插件别名为键
     /// </summary>
-    internal class PluginConfigrationProvider<TPlugin> : IPluginConfigrationProvider<TPlugin>
+    public class PluginConfigrationProvider<TPlugin> : IPluginConfigrationProvider<TPlugin>
     {
-        private readonly IConfiguration _configuration;
-
         public PluginConfigrationProvider(PluginFactoryConfigration configration)
         {
             if (configration == null)
@@ -27,9 +24,9 @@ namespace PluginFactory
             {
                 configKey = attr.Alias;
             }
-            _configuration = configration.Configuration.GetSection(configKey);
+            Configuration = configration.Configuration.GetSection(configKey);
         }
 
-        public IConfiguration Configuration => _configuration;
+        public IConfiguration Configuration { get; }
     }
 }

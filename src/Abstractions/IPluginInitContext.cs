@@ -5,7 +5,9 @@ namespace PluginFactory.Abstractions
 {
     public interface IPluginInitContext
     {
-        IPluginFactory PluginFactory { get; }
+        string PluginPath { get; }
+
+        IPluginLoader PluginLoader { get; }
 
         IServiceCollection ServiceCollection { get; }
     }

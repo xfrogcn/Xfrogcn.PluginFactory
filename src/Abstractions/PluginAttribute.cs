@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PluginFactory.Abstractions
 {
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple =false)]
     public class PluginAttribute : Attribute
     {
         /// <summary>

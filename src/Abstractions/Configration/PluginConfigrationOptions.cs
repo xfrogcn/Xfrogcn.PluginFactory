@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-namespace PluginFactory
+﻿using Microsoft.Extensions.Options;
+namespace PluginFactory.Abstractions
 {
     /// <summary>
     /// 从配置中获取插件设置
@@ -14,5 +12,6 @@ namespace PluginFactory
         public PluginConfigrationOptions(IPluginConfigrationProvider<TPlugin> provider) : base(provider.Configuration)
         {
         }
+
     }
 }

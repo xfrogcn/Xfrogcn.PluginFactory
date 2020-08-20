@@ -14,7 +14,7 @@ namespace PluginFactory.Abstractions
     /// 以隔离的方式加载程序集，每个加载的程序集可以有独立的依赖版本
     /// 隔离的插件需位于单独的文件夹中，且文件夹名称需与程序集名称一致，且必须具有deps.json文件
     /// </summary>
-    internal class IsolationAssemblyLoadContext : AssemblyLoadContext
+    public class IsolationAssemblyLoadContext : AssemblyLoadContext
     {
         private AssemblyDependencyResolver _resolver;
         private readonly string _assemblyName;

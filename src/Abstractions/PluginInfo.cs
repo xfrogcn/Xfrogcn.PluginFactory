@@ -23,6 +23,16 @@ namespace PluginFactory.Abstractions
         public string Description { get; set; }
 
         /// <summary>
+        /// 别名
+        /// </summary>
+        public string Alias { get; set; }
+
+        /// <summary>
+        /// 是否有效
+        /// </summary>
+        public bool IsEnable { get; set; }
+
+        /// <summary>
         /// 插件类型
         /// </summary>
         public Type PluginType { get; set; }

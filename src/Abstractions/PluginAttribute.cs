@@ -13,6 +13,11 @@ namespace PluginFactory.Abstractions
         public string Id { get; set; }
 
         /// <summary>
+        /// 插件别名，在插件配置中可使用别名作为插件配置键
+        /// </summary>
+        public string Alias { get; set; }
+
+        /// <summary>
         /// 插件名称
         /// </summary>
         public string Name { get; set; }

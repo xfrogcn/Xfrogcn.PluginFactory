@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Abstractions\Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Abstractions\PluginFactory.Abstractions.csproj" />
   </ItemGroup>
-
 </Project>

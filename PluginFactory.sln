@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions", "src\Abstractions\Abstractions.csproj", "{DFAA6ADD-58E5-47AD-9277-A61B9809A083}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginFactory.Abstractions", "src\Abstractions\PluginFactory.Abstractions.csproj", "{DFAA6ADD-58E5-47AD-9277-A61B9809A083}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0CBBE3B7-974D-4065-987B-2F36A6D1F8D6}"
 EndProject
@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassA", "test\ClassA\Class
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassB", "test\ClassB\ClassB.csproj", "{CEC58C66-A2BF-41E5-A897-1B095D798E66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions.Test", "test\Abstractions.Test\Abstractions.Test.csproj", "{472C9DF9-A102-4286-A9BF-DD36FFCB3C96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginFactory.Abstractions.Test", "test\Abstractions.Test\PluginFactory.Abstractions.Test.csproj", "{472C9DF9-A102-4286-A9BF-DD36FFCB3C96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

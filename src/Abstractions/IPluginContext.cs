@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+
 namespace PluginFactory.Abstractions
 {
     public interface IPluginContext
@@ -6,5 +8,7 @@ namespace PluginFactory.Abstractions
         public IPluginFactory PluginFactory { get; }
 
         public IServiceProvider ServiceProvider { get; }
+
+        public CancellationToken CancellationToken { get; }
     }
 }

@@ -24,7 +24,7 @@ namespace PluginFactory
         private List<PluginInfo> _pluginList = new List<PluginInfo>();
         public IReadOnlyList<PluginInfo> PluginList => _pluginList;
 
-        public void Load()
+        public virtual void Load()
         {
             var dir = _options.FileProvider.GetDirectoryContents(string.Empty);
             if (!dir.Exists)
@@ -145,9 +145,9 @@ namespace PluginFactory
         }
 
 
-        public void Init()
+        public virtual void Init()
         {
-            var initList = _pluginList.Where(x => x.CanInit).ToList();
+            var initList = _pluginList.Where(x => x.CanInit && x.IsEnable).ToList();
             if (initList.Count == 0)
             {
                 return;

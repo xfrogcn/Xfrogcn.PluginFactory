@@ -70,7 +70,7 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 throw new ArgumentNullException(nameof(options));
             }
-
+            services.AddLogging();
             services.AddOptions();
 
             IPluginLoader loader = createPluginLoader(services, options);
@@ -80,6 +80,9 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // 从配置中获取插件设置，以插件类型名称或插件别名作为配置键
             services.TryAddSingleton(typeof(IPluginConfigrationProvider<>), typeof(PluginConfigrationProvider<>));
+
+            // 注册配置变更监听
+            services.TryAddSingleton(typeof(IOptionsChangeTokenSource<>), typeof(ConfigurationChangeTokenSource<>));
 
             // 注入插件工厂
             services.TryAddSingleton<IPluginFactory, DefaultPluginFactory>();
@@ -115,13 +118,25 @@ namespace Microsoft.Extensions.DependencyInjection
             loader.Load();
             loader.Init();
 
+            foreach(PluginInfo pi in loader.PluginList)
+            {
+                if (!pi.IsEnable)
+                {
+                    continue;
+                }
+                services.TryAddEnumerable(ServiceDescriptor.Singleton(typeof(IPlugin), pi.PluginType));
+            }
+
+
+
             // 注入配置映射
-            var list = loader.PluginList.Where(x => x.CanConfig).ToList();
+            var list = loader.PluginList.Where(x => x.CanConfig && x.IsEnable).ToList();
+
             foreach(PluginInfo pi in list)
             {
                 Type cfgOptionsType = typeof(IConfigureOptions<>).MakeGenericType(pi.ConfigType);
                 Type impleType = typeof(PluginConfigrationOptions<,>).MakeGenericType(pi.PluginType, pi.ConfigType);
-                services.TryAddSingleton(cfgOptionsType, impleType);
+                services.TryAddEnumerable(ServiceDescriptor.Singleton(cfgOptionsType, impleType));
             }
 
             return loader;

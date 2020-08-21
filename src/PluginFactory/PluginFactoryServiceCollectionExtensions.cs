@@ -20,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             var options = createDefaultOptions();
 
-            services.AddPluginFactory(options);
+            services.AddPluginFactory(options, null);
 
             return services;
         }

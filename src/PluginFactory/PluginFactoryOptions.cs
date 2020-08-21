@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace PluginFactory
 {
@@ -22,6 +23,11 @@ namespace PluginFactory
         /// </summary>
         public IFileProvider FileProvider { get; set; }
 
+        private List<Assembly> _additionalAssemblies = new List<Assembly>();
+        public IReadOnlyList<Assembly> AdditionalAssemblies => _additionalAssemblies;
+
+        public Func<string, bool> Predicate { get; set; } = _ => true;
+
         private List<string> _disabledPluginList = new List<string>();
 
         /// <summary>
@@ -35,6 +41,11 @@ namespace PluginFactory
             {
                 _disabledPluginList.Add(pluginTypeName);
             }
+        }
+
+        public void AddAssembly(Assembly assembly)
+        {
+            _additionalAssemblies.Add(assembly);
         }
 
         /// <summary>

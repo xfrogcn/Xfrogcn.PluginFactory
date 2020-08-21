@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginFactory.Abstractions", "src\Abstractions\PluginFactory.Abstractions.csproj", "{DFAA6ADD-58E5-47AD-9277-A61B9809A083}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginFactory.Abstractions", "src\Abstractions\PluginFactory.Abstractions.csproj", "{DFAA6ADD-58E5-47AD-9277-A61B9809A083}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0CBBE3B7-974D-4065-987B-2F36A6D1F8D6}"
 EndProject
@@ -11,13 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{9049
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3687AC96-B900-49BA-8E61-BC1D42ED378E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassA", "test\ClassA\ClassA.csproj", "{DB2F5525-EBC1-44C6-9FCA-876A649E3609}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassA", "test\ClassA\ClassA.csproj", "{DB2F5525-EBC1-44C6-9FCA-876A649E3609}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassB", "test\ClassB\ClassB.csproj", "{CEC58C66-A2BF-41E5-A897-1B095D798E66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassB", "test\ClassB\ClassB.csproj", "{CEC58C66-A2BF-41E5-A897-1B095D798E66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginFactory.Abstractions.Test", "test\Abstractions.Test\PluginFactory.Abstractions.Test.csproj", "{472C9DF9-A102-4286-A9BF-DD36FFCB3C96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginFactory.Abstractions.Test", "test\Abstractions.Test\PluginFactory.Abstractions.Test.csproj", "{472C9DF9-A102-4286-A9BF-DD36FFCB3C96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginFactory", "src\PluginFactory\PluginFactory.csproj", "{9999A5B1-06ED-42EB-AA72-3EEBCD2FEAAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginFactory", "src\PluginFactory\PluginFactory.csproj", "{9999A5B1-06ED-42EB-AA72-3EEBCD2FEAAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginFactory.Test", "test\PluginFactory.Test\PluginFactory.Test.csproj", "{08409CE2-3EDA-4F50-ACCE-9BFB88839297}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{9999A5B1-06ED-42EB-AA72-3EEBCD2FEAAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9999A5B1-06ED-42EB-AA72-3EEBCD2FEAAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9999A5B1-06ED-42EB-AA72-3EEBCD2FEAAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08409CE2-3EDA-4F50-ACCE-9BFB88839297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08409CE2-3EDA-4F50-ACCE-9BFB88839297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08409CE2-3EDA-4F50-ACCE-9BFB88839297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08409CE2-3EDA-4F50-ACCE-9BFB88839297}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{CEC58C66-A2BF-41E5-A897-1B095D798E66} = {3687AC96-B900-49BA-8E61-BC1D42ED378E}
 		{472C9DF9-A102-4286-A9BF-DD36FFCB3C96} = {3687AC96-B900-49BA-8E61-BC1D42ED378E}
 		{9999A5B1-06ED-42EB-AA72-3EEBCD2FEAAA} = {0CBBE3B7-974D-4065-987B-2F36A6D1F8D6}
+		{08409CE2-3EDA-4F50-ACCE-9BFB88839297} = {3687AC96-B900-49BA-8E61-BC1D42ED378E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8C1A8E02-8867-4C7F-99AC-900D923F5575}

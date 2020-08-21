@@ -61,6 +61,15 @@ namespace PluginFactory {
         }
         
         /// <summary>
+        ///   查找类似 A plug-in that supports an initialization interface must provide a parameterless constructor, {0} 的本地化字符串。
+        /// </summary>
+        internal static string InvalidInitPlugin {
+            get {
+                return ResourceManager.GetString("InvalidInitPlugin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Starting 的本地化字符串。
         /// </summary>
         internal static string PluginBeginStart {

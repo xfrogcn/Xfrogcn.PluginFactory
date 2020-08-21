@@ -28,7 +28,7 @@ namespace PluginFactory
         /// <summary>
         /// 是否有效
         /// </summary>
-        public bool IsEnable { get; set; }
+        public bool IsEnable { get; set; } = true;
 
         /// <summary>
         /// 插件类型

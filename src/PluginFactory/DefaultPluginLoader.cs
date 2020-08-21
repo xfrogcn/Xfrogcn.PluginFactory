@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 
 namespace PluginFactory
 {
@@ -26,14 +28,20 @@ namespace PluginFactory
         public virtual void Load()
         {
             var dir = _options.FileProvider.GetDirectoryContents(string.Empty);
-            if (!dir.Exists)
-            {
-                return;
-            }
 
             lock (_pluginList)
             {
-                List<PluginInfo> list = null;
+                // 载入附加组件
+                foreach(Assembly assembly in _options.AdditionalAssemblies)
+                {
+                    LoadPluginFromAssembly(assembly);
+                }
+
+
+                if (!dir.Exists)
+                {
+                    return;
+                }
                 foreach (var p in dir)
                 {
                     if (p.IsDirectory)
@@ -50,7 +58,7 @@ namespace PluginFactory
                             if (fileName.Equals(p.Name, StringComparison.OrdinalIgnoreCase))
                             {
                                 // 插件程序集
-                                list = LoadPluginFromAssembly(pd.PhysicalPath);
+                                LoadPluginFromAssembly(pd.PhysicalPath);
                             }
 
                         }
@@ -58,50 +66,69 @@ namespace PluginFactory
                     else if (p.PhysicalPath != null && Path.GetExtension(p.PhysicalPath) == ".dll")
                     {
                         //
-                        list = LoadPluginFromAssembly(p.PhysicalPath);
+                        LoadPluginFromAssembly(p.PhysicalPath);
                     }
+
                 }
-                if(list!=null && list.Count > 0)
-                {
-                    _pluginList.AddRange(list);
-                }
+                
             }
         }
 
-        protected virtual List<PluginInfo> LoadPluginFromAssembly(string assemblyPath)
+        protected virtual void LoadPluginFromAssembly(string assemblyPath)
         {
+            if (_options.Predicate!=null && !_options.Predicate(assemblyPath))
+            {
+                return;
+            }
+
             IsolationAssemblyLoadContext context = new IsolationAssemblyLoadContext(assemblyPath);
             var assembly = context.Load();
+            if (assembly != null)
+            {
+                LoadPluginFromAssembly(assembly);
+            }
+        }
+
+
+        protected virtual void LoadPluginFromAssembly(Assembly assembly)
+        {
             if (assembly == null)
             {
                 // 异常
-                throw new Exception();
+                throw new ArgumentNullException(nameof(assembly));
             }
 
             var types = assembly.GetExportedTypes();
             List<PluginInfo> plist = new List<PluginInfo>();
-            foreach(Type t in types)
+            foreach (Type t in types)
             {
                 PluginInfo pi = LoadPluginFromType(t);
-                if(pi != null)
+                if (pi != null && !_pluginList.Any(p => p.PluginType == pi.PluginType))
                 {
-                    plist.Add(pi);
+                    _pluginList.Add(pi);
                 }
             }
-
-            return plist;
+  
         }
 
         protected virtual PluginInfo LoadPluginFromType(Type type)
         {
+            if(type.IsAbstract)
+            {
+                return null;
+            }
+
             Type[] iTypes = type.GetInterfaces();
             if(iTypes==null || iTypes.Length == 0)
             {
                 return null;
             }
+            var pluginType = typeof(IPlugin);
+
+            
 
             PluginInfo pi = null;
-            if (typeof(IPlugin).IsAssignableFrom(type))
+            if (typeof(IPlugin).GetTypeInfo().IsAssignableFrom(type))
             {
                 pi = new PluginInfo()
                 {
@@ -129,7 +156,15 @@ namespace PluginFactory
             // 初始化
             if(typeof(ISupportInitPlugin).IsAssignableFrom(type))
             {
-                pi.CanInit = true;
+                if(type.GetConstructor(new Type[0])!=null)
+                {
+                    pi.CanInit = true;
+                }
+                else
+                {
+                    throw new InvalidOperationException(String.Format(Resources.InvalidInitPlugin, type.FullName));
+                }
+               
             }
 
             // 配置

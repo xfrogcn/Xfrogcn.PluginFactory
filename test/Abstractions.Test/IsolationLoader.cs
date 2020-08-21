@@ -22,13 +22,13 @@ namespace PluginFactory.Abstractions.Test
         [Fact(DisplayName = "加载无依赖库")]
         public void Test1()
         {
-            var loader = new Abstractions.IsolationAssemblyLoadContext(Path.Combine(classAIsolationPath, "ClassA/ClassA.dll"));
+            var loader = new IsolationAssemblyLoadContext(Path.Combine(classAIsolationPath, "ClassA/ClassA.dll"));
             var assembly =  loader.Load();
             Assert.NotNull(assembly);
             var types = assembly.GetTypes();
 
             // 无deps.json时将会回退通过Default方式载入
-            loader = new Abstractions.IsolationAssemblyLoadContext(Path.Combine(classANormalPath, "ClassA.dll"));
+            loader = new IsolationAssemblyLoadContext(Path.Combine(classANormalPath, "ClassA.dll"));
             assembly = loader.Load();
             Assert.NotNull(assembly);
             types = assembly.GetTypes();
@@ -37,17 +37,17 @@ namespace PluginFactory.Abstractions.Test
         [Fact(DisplayName = "加载有依赖库")]
         public void Test2()
         {
-            var loader = new Abstractions.IsolationAssemblyLoadContext(Path.Combine(classBNormalPath, "ClassB.dll"));
+            var loader = new IsolationAssemblyLoadContext(Path.Combine(classBNormalPath, "ClassB.dll"));
             var assembly = loader.Load();
             Assert.NotNull(assembly);
             var types = assembly.GetTypes();
 
-            loader = new Abstractions.IsolationAssemblyLoadContext(Path.Combine(classBIsolationPath, "ClassB/ClassB.dll"));
+            loader = new IsolationAssemblyLoadContext(Path.Combine(classBIsolationPath, "ClassB/ClassB.dll"));
             assembly = loader.Load();
             Assert.NotNull(assembly);
             types = assembly.GetTypes();
 
-            loader = new Abstractions.IsolationAssemblyLoadContext(Path.Combine(classBIsolationErrorPath, "ClassB/ClassB.dll"));
+            loader = new IsolationAssemblyLoadContext(Path.Combine(classBIsolationErrorPath, "ClassB/ClassB.dll"));
 
             assembly = loader.Load();
             loader.Resolving += Loader_Resolving;

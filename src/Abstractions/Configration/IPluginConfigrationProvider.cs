@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace PluginFactory.Abstractions
+namespace PluginFactory
 {
     /// <summary>
     /// Plugin配置节点获取器

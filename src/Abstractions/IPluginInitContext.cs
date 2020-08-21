@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace PluginFactory.Abstractions
+namespace PluginFactory
 {
     public interface IPluginInitContext
     {

@@ -1,13 +1,11 @@
-﻿using System;
-using System.IO;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.FileProviders;
-using PluginFactory;
-using PluginFactory.Abstractions;
-using System.Linq;
 using Microsoft.Extensions.Options;
+using PluginFactory;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

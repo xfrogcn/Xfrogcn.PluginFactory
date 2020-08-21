@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PluginFactory.Abstractions
+namespace PluginFactory
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple =false)]
     public class PluginAttribute : Attribute

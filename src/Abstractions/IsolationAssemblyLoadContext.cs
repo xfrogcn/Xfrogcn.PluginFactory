@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Loader;
-using System.Text;
 
 [assembly: InternalsVisibleTo("PluginFactory.Abstractions.Test")]
 
-namespace PluginFactory.Abstractions
+namespace PluginFactory
 {
     /// <summary>
     /// 以隔离的方式加载程序集，每个加载的程序集可以有独立的依赖版本

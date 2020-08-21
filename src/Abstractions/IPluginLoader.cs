@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace PluginFactory.Abstractions
+namespace PluginFactory
 {
     /// <summary>
     /// 插件载入器

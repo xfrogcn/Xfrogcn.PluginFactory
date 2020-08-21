@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace PluginFactory.Abstractions
+namespace PluginFactory
 {
     public interface IPluginContext
     {

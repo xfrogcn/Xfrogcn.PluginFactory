@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>PluginFactory.Abstractions</AssemblyName>
-    <RootNamespace>PluginFactory.Abstractions</RootNamespace>
+    <RootNamespace>PluginFactory</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

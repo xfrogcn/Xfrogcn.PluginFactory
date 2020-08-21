@@ -1,5 +1,4 @@
-﻿using System;
-namespace PluginFactory.Abstractions
+﻿namespace PluginFactory
 {
     /// <summary>
     /// 支持初始化的插件接口

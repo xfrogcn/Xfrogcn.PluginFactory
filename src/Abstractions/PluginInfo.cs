@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PluginFactory.Abstractions
+namespace PluginFactory
 {
     /// <summary>
     /// 插件信息

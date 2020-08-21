@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using PluginFactory.Abstractions;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace PluginFactory
 {

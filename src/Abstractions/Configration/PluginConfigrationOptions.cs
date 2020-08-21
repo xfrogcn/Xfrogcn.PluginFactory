@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
-namespace PluginFactory.Abstractions
+namespace PluginFactory
 {
     /// <summary>
     /// 从配置中获取插件设置

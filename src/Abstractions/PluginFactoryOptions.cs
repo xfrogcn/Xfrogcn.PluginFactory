@@ -52,7 +52,7 @@ namespace PluginFactory
         /// 从配置中获取插件工厂设置
         /// </summary>
         /// <param name="configuration"></param>
-        internal void ConfigFromConfigration(PluginFactoryConfigration configuration)
+        public void ConfigFromConfigration(PluginFactoryConfigration configuration)
         {
             if (configuration == null)
             {

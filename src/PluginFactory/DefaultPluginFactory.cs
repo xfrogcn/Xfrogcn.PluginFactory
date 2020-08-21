@@ -114,6 +114,35 @@ namespace PluginFactory
             return _loader.PluginList.First(x => x.PluginType == pluginType);
         }
 
+
+        public IPlugin GetPluginById(string id)
+        {
+            var pi = _loader.PluginList.FirstOrDefault(x => x.Id == id);
+            if( pi == null)
+            {
+                return null;
+            }
+
+            return _pluginList.FirstOrDefault(x => x.GetType() == pi.PluginType);
+        }
+
+        public IPlugin GetPluginByName(string name)
+        {
+            var pi = _loader.PluginList.FirstOrDefault(x => x.Name == name || x.Alias == name);
+            if (pi == null)
+            {
+                return null;
+            }
+
+            return _pluginList.FirstOrDefault(x => x.GetType() == pi.PluginType);
+        }
+
+        public TPlugin GetPlugin<TPlugin>()
+            where TPlugin : class, IPlugin
+        {
+            return _pluginList.FirstOrDefault(x => x.GetType() == typeof(TPlugin)) as TPlugin;
+        }
+
         static class Log
         {
             static EventId PluginStartingEventId = new EventId(100, "PluginStarting");

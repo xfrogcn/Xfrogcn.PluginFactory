@@ -21,13 +21,31 @@ namespace PluginFactory
             Type pluginType = typeof(TPlugin);
             string configKey = typeof(TPlugin).FullName;
             var section = configration.Configuration.GetSection(configKey);
-            var attr = pluginType.GetCustomAttributes(typeof(PluginAttribute), false).OfType<PluginAttribute>().FirstOrDefault();
-            if(!section.Exists() && attr !=null && !String.IsNullOrEmpty(attr.Alias))
+            if (!section.Exists())
             {
-                configKey = attr.Alias;
-                section = configration.Configuration.GetSection(configKey);
+                // 内嵌类型，将+号替换为.
+                configKey = configKey.Replace("+", ".");
+                section= configration.Configuration.GetSection(configKey);
             }
             Configuration = section;
+
+            var attr = pluginType.GetCustomAttributes(typeof(PluginAttribute), false).OfType<PluginAttribute>().FirstOrDefault();
+            if(attr !=null && !String.IsNullOrEmpty(attr.Alias))
+            {
+                configKey = attr.Alias;
+                var section2 = configration.Configuration.GetSection(configKey);
+                if (section2.Exists())
+                {
+                    //合并
+                    var config = new ConfigurationBuilder()
+                        .AddConfiguration(section)
+                        .AddConfiguration(section2)
+                        .Build();
+                    Configuration = config;
+                }
+
+            }
+           
         }
 
         public IConfiguration Configuration { get; }

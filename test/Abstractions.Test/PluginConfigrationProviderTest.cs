@@ -29,20 +29,54 @@ namespace PluginFactory.Abstractions.Test
 
         }
 
+        [Fact(DisplayName = "Normal")]
         public void Test1()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>()
             {
-                { "PluginFactory.Abstractions.Test.PluginConfigrationProviderTest.PluginA:Test","A"  }
+                { "Plugins:PluginFactory.Abstractions.Test.PluginConfigrationProviderTest.PluginA:Test","A"  }
             };
             var config = new ConfigurationBuilder()
                 .AddInMemoryCollection(dic)
                 .Build();
-            
-            
 
-            //PluginConfigrationProvider<PluginA> provider = new PluginConfigrationProvider<PluginA>(config);
-                
+            PluginFactoryConfigration factoryConfig = new PluginFactoryConfigration(config);
+            PluginConfigrationProvider<PluginA> provider = new PluginConfigrationProvider<PluginA>(factoryConfig);
+            Assert.Equal("A", provider.Configuration["Test"]);
+        }
+
+        [Fact(DisplayName = "Alias")]
+        public void Test2()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>()
+            {
+                { "Plugins:PluginB:Test","B"  }
+            };
+            var config = new ConfigurationBuilder()
+                .AddInMemoryCollection(dic)
+                .Build();
+
+            PluginFactoryConfigration factoryConfig = new PluginFactoryConfigration(config);
+            PluginConfigrationProvider<PluginB> provider = new PluginConfigrationProvider<PluginB>(factoryConfig);
+            Assert.Equal("B", provider.Configuration["Test"]);
+        }
+
+        [Fact(DisplayName = "Merge")]
+        public void Test3()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>()
+            {
+                { "Plugins:PluginFactory.Abstractions.Test.PluginConfigrationProviderTest.PluginB:Test","B"  },
+                { "Plugins:PluginB:Test2","B2"  }
+            };
+            var config = new ConfigurationBuilder()
+                .AddInMemoryCollection(dic)
+                .Build();
+
+            PluginFactoryConfigration factoryConfig = new PluginFactoryConfigration(config);
+            PluginConfigrationProvider<PluginB> provider = new PluginConfigrationProvider<PluginB>(factoryConfig);
+            Assert.Equal("B", provider.Configuration["Test"]);
+            Assert.Equal("B2", provider.Configuration["Test2"]);
         }
     }
 }

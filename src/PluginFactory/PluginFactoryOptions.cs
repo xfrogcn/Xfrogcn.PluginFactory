@@ -9,7 +9,6 @@ namespace PluginFactory
 {
     public class PluginFactoryOptions
     {
-        public const string DEFAULT_CONFIG_KEY = "Plugins";
         public const string DEFAULT_PLUGIN_PATH_KEY = "Path";
         public const string DEFAULT_ISENABLED_KEY = "IsEnabled";
 
@@ -42,13 +41,13 @@ namespace PluginFactory
         /// 从配置中获取插件工厂设置
         /// </summary>
         /// <param name="configuration"></param>
-        internal void ConfigFromConfigration(IConfiguration configuration)
+        internal void ConfigFromConfigration(PluginFactoryConfigration configuration)
         {
             if (configuration == null)
             {
                 throw new ArgumentNullException(nameof(configuration));
             }
-            IConfiguration pluginConfig = configuration.GetSection(DEFAULT_CONFIG_KEY);
+            IConfiguration pluginConfig = configuration.Configuration;
             string path = pluginConfig[DEFAULT_PLUGIN_PATH_KEY];
             if(!String.IsNullOrEmpty(path) && !String.Equals(path, PluginPath, StringComparison.OrdinalIgnoreCase))
             {

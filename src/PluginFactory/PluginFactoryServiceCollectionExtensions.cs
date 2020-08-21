@@ -11,8 +11,8 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class PluginFactoryServiceCollectionExtensions
     {
-        public static readonly string DEFAULT_PLUGIN_PATH = "Plugins";
 
+        public static readonly string DEFAULT_PLUGIN_PATH = "Plugins";
 
         public static IServiceCollection AddPluginFactory(this IServiceCollection services)
         {
@@ -38,7 +38,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // 从配置中获取设置
             PluginFactoryOptions options = createDefaultOptions();
-            options.ConfigFromConfigration(configuration);
+            options.ConfigFromConfigration(factoryConfigration);
 
             services.AddPluginFactory(options);
 

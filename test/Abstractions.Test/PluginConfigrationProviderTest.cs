@@ -78,5 +78,59 @@ namespace PluginFactory.Abstractions.Test
             Assert.Equal("B", provider.Configuration["Test"]);
             Assert.Equal("B2", provider.Configuration["Test2"]);
         }
+
+        [Fact(DisplayName = "Empty")]
+        public void Test4()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>()
+            {
+            };
+            var config = new ConfigurationBuilder()
+                .AddInMemoryCollection(dic)
+                .Build();
+
+            PluginFactoryConfigration factoryConfig = new PluginFactoryConfigration(config);
+            PluginConfigrationProvider<PluginB> provider = new PluginConfigrationProvider<PluginB>(factoryConfig);
+            Assert.Empty(provider.Configuration.GetChildren());
+           
+        }
+
+
+
+
+        [Fact(DisplayName = "Share_Normal")]
+        public void Test5()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>()
+            {
+                { "Plugins:PluginB:Test","B"  },
+                { "Plugins:_Share:Test2","B2"  },
+            };
+            var config = new ConfigurationBuilder()
+                .AddInMemoryCollection(dic)
+                .Build();
+
+            PluginFactoryConfigration factoryConfig = new PluginFactoryConfigration(config);
+            PluginConfigrationProvider<PluginB> provider = new PluginConfigrationProvider<PluginB>(factoryConfig);
+            Assert.Equal("B", provider.Configuration["Test"]);
+            Assert.Equal("B2", provider.Configuration["Test2"]);
+        }
+
+        [Fact(DisplayName = "Share_Override")]
+        public void Test6()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>()
+            {
+                { "Plugins:PluginB:Test","B"  },
+                { "Plugins:_Share:Test","B2"  },
+            };
+            var config = new ConfigurationBuilder()
+                .AddInMemoryCollection(dic)
+                .Build();
+
+            PluginFactoryConfigration factoryConfig = new PluginFactoryConfigration(config);
+            PluginConfigrationProvider<PluginB> provider = new PluginConfigrationProvider<PluginB>(factoryConfig);
+            Assert.Equal("B", provider.Configuration["Test"]);
+        }
     }
 }

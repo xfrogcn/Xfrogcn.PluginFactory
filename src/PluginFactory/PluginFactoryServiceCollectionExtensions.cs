@@ -40,7 +40,8 @@ namespace Microsoft.Extensions.DependencyInjection
             PluginFactoryOptions options = createDefaultOptions();
             options.ConfigFromConfigration(factoryConfigration);
 
-            services.AddPluginFactory(options);
+
+            services.AddPluginFactory(options, configuration);
 
             
 
@@ -56,13 +57,13 @@ namespace Microsoft.Extensions.DependencyInjection
                 configureOptions(options);
             }
 
-            services.AddPluginFactory(options);
+            services.AddPluginFactory(options, null);
 
             return services;
         }
 
 
-        public static IServiceCollection AddPluginFactory(this IServiceCollection services, PluginFactoryOptions options)
+        public static IServiceCollection AddPluginFactory(this IServiceCollection services, PluginFactoryOptions options, IConfiguration configuration)
         {
             if (options == null)
             {
@@ -75,6 +76,18 @@ namespace Microsoft.Extensions.DependencyInjection
             // 载入器单例
             services.TryAddSingleton(loader);
             services.TryAddSingleton(options);
+
+            if( configuration == null)
+            {
+                configuration = new ConfigurationBuilder()
+                    .AddInMemoryCollection()
+                    .Build();
+            }
+
+            // 配置根ConfigurationChangeTokenSource需要
+            services.TryAddSingleton<IConfiguration>(configuration);
+            // 插件全局配置
+            services.TryAddSingleton(new PluginFactoryConfigration(configuration));
 
             // 从配置中获取插件设置，以插件类型名称或插件别名作为配置键
             services.TryAddSingleton(typeof(IPluginConfigrationProvider<>), typeof(PluginConfigrationProvider<>));

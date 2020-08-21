@@ -151,7 +151,7 @@ namespace PluginFactory
                 pi.Description = attr.Description;
             }
             pi.Id = string.IsNullOrEmpty(pi.Id) ? type.FullName : pi.Id;
-            pi.Name = string.IsNullOrEmpty(pi.Name) ? type.FullName : pi.Id;
+            pi.Name = string.IsNullOrEmpty(pi.Name) ? (string.IsNullOrEmpty(pi.Alias) ? type.FullName : pi.Alias) : pi.Name;
 
             // 初始化
             if(typeof(ISupportInitPlugin).IsAssignableFrom(type))

@@ -19,4 +19,8 @@
     <ProjectReference Include="..\..\src\PluginFactory\PluginFactory.csproj" />
   </ItemGroup>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="./build-plugin.cmd" />
+  </Target>
+
 </Project>

@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="./build-plugin.cmd" />
+    <Exec Command="sh ./build-plugin.cmd" />
   </Target>
 
 </Project>

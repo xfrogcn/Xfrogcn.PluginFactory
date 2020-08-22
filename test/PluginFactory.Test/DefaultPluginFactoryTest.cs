@@ -91,5 +91,35 @@ namespace PluginFactory.Test
 
             await factory.StopAsync(cancellationTokenSource.Token);
         }
+
+
+        [Fact(DisplayName = "Plugin_Init")]
+        public void Test4()
+        {
+            // 默认使用Plugins目录作为插件目录
+            IServiceCollection serviceDescriptors = new ServiceCollection()
+                .AddLogging(loggingBuilder =>
+                {
+                    loggingBuilder.SetMinimumLevel(LogLevel.Trace);
+                    loggingBuilder.AddDebug();
+                    loggingBuilder.AddConsole();
+                })
+                .AddPluginFactory(options =>
+                {
+                    // 不载入Plugins目录下文件
+                    options.Predicate = _ => false;
+                    // 加入测试程序集
+                    options.AddAssembly(typeof(DefaultPluginFactoryTest).Assembly);
+                });
+
+            var sp = serviceDescriptors.BuildServiceProvider();
+            var factory = sp.GetRequiredService<IPluginFactory>() as DefaultPluginFactory;
+            var loader = sp.GetRequiredService<IPluginLoader>();
+            Assert.Equal(4, loader.PluginList.Count);
+
+            // TestPluginC.TestDIClass 由 TestPluginC Init注入
+            var diClass = sp.GetRequiredService<TestPluginC.TestDIClass>();
+            Assert.Equal("Hello", diClass.Message);
+        }
     }
 }

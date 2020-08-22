@@ -78,13 +78,18 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddPluginFactory(this IServiceCollection services, Action<PluginFactoryOptions> configureOptions)
         {
+            return AddPluginFactory(services, null, configureOptions);
+        }
+
+        public static IServiceCollection AddPluginFactory(this IServiceCollection services, IConfiguration configuration, Action<PluginFactoryOptions> configureOptions)
+        {
             PluginFactoryOptions options = createDefaultOptions();
             if (configureOptions != null)
             {
                 configureOptions(options);
             }
 
-            services.AddPluginFactory(options, null);
+            services.AddPluginFactory(options, configuration);
 
             return services;
         }

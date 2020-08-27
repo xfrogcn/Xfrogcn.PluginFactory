@@ -27,7 +27,7 @@ namespace PluginFactory
 
         public virtual void Load()
         {
-            var dir = _options.FileProvider.GetDirectoryContents(string.Empty);
+            
 
             lock (_pluginList)
             {
@@ -36,7 +36,12 @@ namespace PluginFactory
                 {
                     LoadPluginFromAssembly(assembly);
                 }
+                if (_options.FileProvider == null)
+                {
+                    return;
+                }
 
+                var dir = _options.FileProvider.GetDirectoryContents(string.Empty);
 
                 if (!dir.Exists)
                 {
@@ -173,6 +178,15 @@ namespace PluginFactory
             {
                 pi.ConfigType = cfgType.GenericTypeArguments[0];
                 pi.CanConfig = true;
+            }
+
+            // 是否禁用
+            if ( (!String.IsNullOrEmpty(pi.Alias) && _options.DisabledPluginList.Contains(pi.Alias))  ||
+                _options.DisabledPluginList.Contains(pi.Name) ||
+                _options.DisabledPluginList.Contains(pi.PluginType.FullName) ||
+                _options.DisabledPluginList.Contains(pi.PluginType.FullName.Replace("+",".")))
+            {
+                pi.IsEnable = false;
             }
 
             return pi;

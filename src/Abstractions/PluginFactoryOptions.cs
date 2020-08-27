@@ -60,7 +60,7 @@ namespace PluginFactory
             }
             IConfiguration pluginConfig = configuration.Configuration;
             string path = pluginConfig[DEFAULT_PLUGIN_PATH_KEY];
-            if(!String.IsNullOrEmpty(path) && !String.Equals(path, PluginPath, StringComparison.OrdinalIgnoreCase))
+            if (!String.IsNullOrEmpty(path) && !String.Equals(path, PluginPath, StringComparison.OrdinalIgnoreCase))
             {
                 if (!Path.IsPathRooted(path))
                 {
@@ -68,10 +68,19 @@ namespace PluginFactory
                 }
                 path = Path.GetFullPath(path);
                 PluginPath = path;
-                if( FileProvider==null || FileProvider is PhysicalFileProvider)
+
+                if (FileProvider == null || FileProvider is PhysicalFileProvider)
                 {
-                    FileProvider = new PhysicalFileProvider(path);
+                    if(Directory.Exists(path))
+                    {
+                        FileProvider = new PhysicalFileProvider(path);
+                    }
+                    else
+                    {
+                        FileProvider = null;
+                    }
                 }
+
             }
 
             configDisablePlugin(pluginConfig);
@@ -87,7 +96,7 @@ namespace PluginFactory
             foreach(IConfigurationSection section in pluginConfig.GetChildren())
             {
                 var isEnabledSection = section.GetSection(DEFAULT_ISENABLED_KEY);
-                if(isEnabledSection.Exists() && isEnabledSection.Value=="0" || isEnabledSection.Value.ToLower() == "false")
+                if(isEnabledSection.Exists() && (isEnabledSection.Value=="0" || isEnabledSection.Value.ToLower() == "false"))
                 {
                     DisablePlugin(section.Key);
                 }

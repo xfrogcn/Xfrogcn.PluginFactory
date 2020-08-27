@@ -4,8 +4,10 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using PluginFactory;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -27,7 +29,19 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddPluginFactory(this IServiceCollection services, IConfiguration configuration)
         {
-            if(configuration == null)
+            return AddPluginFactory(services, configuration, (Assembly)null);
+        }
+
+        public static IServiceCollection AddPluginFactory(this IServiceCollection services, IConfiguration configuration, Assembly assembly)
+        {
+            return AddPluginFactory(services, configuration, new Assembly[] { assembly });
+        }
+
+
+
+        public static IServiceCollection AddPluginFactory(this IServiceCollection services, IConfiguration configuration, IEnumerable<Assembly> assemblies)
+        {
+            if (configuration == null)
             {
                 throw new ArgumentNullException(nameof(configuration));
             }
@@ -38,18 +52,36 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // 从配置中获取设置
             PluginFactoryOptions options = createDefaultOptions();
+            if (assemblies != null)
+            {
+                foreach (var a in assemblies)
+                {
+                    if (a == null)
+                    {
+                        continue;
+                    }
+                    options.AddAssembly(a);
+                }
+            }
             options.ConfigFromConfigration(factoryConfigration);
 
 
             services.AddPluginFactory(options, configuration);
 
-            
+
 
             return services;
         }
 
 
+
+
         public static IServiceCollection AddPluginFactory(this IServiceCollection services, Action<PluginFactoryOptions> configureOptions)
+        {
+            return AddPluginFactory(services, null, configureOptions);
+        }
+
+        public static IServiceCollection AddPluginFactory(this IServiceCollection services, IConfiguration configuration, Action<PluginFactoryOptions> configureOptions)
         {
             PluginFactoryOptions options = createDefaultOptions();
             if (configureOptions != null)
@@ -57,7 +89,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 configureOptions(options);
             }
 
-            services.AddPluginFactory(options, null);
+            services.AddPluginFactory(options, configuration);
 
             return services;
         }
@@ -116,9 +148,12 @@ namespace Microsoft.Extensions.DependencyInjection
             // 默认设置
             PluginFactoryOptions options = new PluginFactoryOptions()
             {
-                PluginPath = pluginPath,
-                FileProvider = new PhysicalFileProvider(pluginPath)
+                PluginPath = pluginPath
             };
+            if(Directory.Exists(pluginPath))
+            {
+                options.FileProvider = new PhysicalFileProvider(pluginPath);
+            }
             return options;
         }
 

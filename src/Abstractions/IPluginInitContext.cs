@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace PluginFactory
 {
@@ -9,5 +10,7 @@ namespace PluginFactory
         IPluginLoader PluginLoader { get; }
 
         IServiceCollection ServiceCollection { get; }
+
+        IServiceProvider InitServiceProvider { get; }
     }
 }

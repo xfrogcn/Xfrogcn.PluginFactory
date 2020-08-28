@@ -32,7 +32,7 @@ namespace PluginFactory.Test
             var options = sp.GetRequiredService<PluginFactoryOptions>();
             IPluginLoader loader = sp.GetRequiredService<IPluginLoader>();
 
-            Assert.EndsWith("Test/Plugins", options.PluginPath);
+            Assert.EndsWith($"Test{System.IO.Path.DirectorySeparatorChar}Plugins", options.PluginPath);
             Assert.Empty(loader.PluginList);
 
         }

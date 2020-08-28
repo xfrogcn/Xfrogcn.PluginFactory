@@ -159,17 +159,9 @@ namespace PluginFactory
             pi.Name = string.IsNullOrEmpty(pi.Name) ? (string.IsNullOrEmpty(pi.Alias) ? type.FullName : pi.Alias) : pi.Name;
 
             // 初始化
-            if(typeof(ISupportInitPlugin).IsAssignableFrom(type))
+            if (typeof(ISupportInitPlugin).IsAssignableFrom(type))
             {
-                if(type.GetConstructor(new Type[0])!=null)
-                {
-                    pi.CanInit = true;
-                }
-                else
-                {
-                    throw new InvalidOperationException(String.Format(Resources.InvalidInitPlugin, type.FullName));
-                }
-               
+                pi.CanInit = true;
             }
 
             // 配置
@@ -202,10 +194,10 @@ namespace PluginFactory
             }
 
             IPluginInitContext initContext = new PluginInitContext(_options.PluginPath, this, _services);
-            foreach(PluginInfo pi in initList)
+            var initInstanceList = initContext.InitServiceProvider.GetRequiredService<IEnumerable<ISupportInitPlugin>>();
+            foreach (ISupportInitPlugin p in initInstanceList)
             {
-                ISupportInitPlugin plugin = Activator.CreateInstance(pi.PluginType) as ISupportInitPlugin;
-                plugin.Init(initContext);
+                p.Init(initContext);
             }
 
         }

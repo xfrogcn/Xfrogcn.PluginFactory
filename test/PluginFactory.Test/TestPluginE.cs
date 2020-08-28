@@ -24,14 +24,21 @@ namespace PluginFactory.Test
 
     public class TestPluginE : SupportConfigPluginBase<TestPluginEOptions>, ISupportInitPlugin
     {
-        public TestPluginE() : base(null)
-        {
-
-        }
 
         private readonly TestPluginEService _service = null;
         public TestPluginEService Service => _service;
         public bool IsStarted { get; private set; }
+
+        private  TestPluginEOptions _options;
+
+        /// <summary>
+        /// 初始化使用的构造函数
+        /// </summary>
+        /// <param name="options"></param>
+        public TestPluginE(IOptionsMonitor<TestPluginEOptions> options) : base(options)
+        {
+            _options = options.CurrentValue;
+        }
 
         public TestPluginE(IOptionsMonitor<TestPluginEOptions> options, TestPluginEService service) : base(options)
         {
@@ -41,12 +48,20 @@ namespace PluginFactory.Test
 
         protected override void OnOptionsChanged(TestPluginEOptions options)
         {
-            _service.Options = options;
+            if (_service != null)
+            {
+                _service.Options = options;
+            }
+            _options = options;
             base.OnOptionsChanged(options);
         }
 
         public void Init(IPluginInitContext context)
         {
+            if (_options == null)
+            {
+                throw new Exception("注入配置失败");
+            }
             context.ServiceCollection.AddSingleton<TestPluginEService>();
         }
 

@@ -48,7 +48,7 @@ namespace PluginFactory.Test
             Assert.True(pi.IsEnable);
             Assert.True(pi.CanInit);
             Assert.True(pi.CanConfig);
-            Assert.Equal(typeof(TestPluginDOptions), pi.ConfigType);
+            Assert.Equal(typeof(TestPluginEOptions), pi.ConfigType);
 
         }
 

@@ -104,9 +104,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddLogging();
             services.AddOptions();
 
-            IPluginLoader loader = createPluginLoader(services, options);
-            // 载入器单例
-            services.TryAddSingleton(loader);
+            
             services.TryAddSingleton(options);
 
             if( configuration == null)
@@ -136,7 +134,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 return factory;
             });
 
-            
+            IPluginLoader loader = createPluginLoader(services, options);
+            // 载入器单例
+            services.TryAddSingleton(loader);
+
 
             return services;
         }
@@ -162,9 +163,9 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             IPluginLoader loader = new DefaultPluginLoader(options, services);
             loader.Load();
-            loader.Init();
+           
 
-            foreach(PluginInfo pi in loader.PluginList)
+            foreach (PluginInfo pi in loader.PluginList)
             {
                 if (!pi.IsEnable)
                 {
@@ -185,6 +186,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 services.TryAddEnumerable(ServiceDescriptor.Singleton(cfgOptionsType, impleType));
             }
 
+            loader.Init();
             return loader;
         }
     }

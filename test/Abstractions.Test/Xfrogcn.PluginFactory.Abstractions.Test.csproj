@@ -6,7 +6,7 @@
     <IsPackable>false</IsPackable>
 
     <AssemblyName>PluginFactory.Abstractions.Test</AssemblyName>
-    <RootNamespace>PluginFactory.Abstractions.Test</RootNamespace>
+    <RootNamespace>Xfrogcn.PluginFactory.Abstractions.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Abstractions\PluginFactory.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Abstractions\Xfrogcn.PluginFactory.Abstractions.csproj" />
   </ItemGroup>
 </Project>

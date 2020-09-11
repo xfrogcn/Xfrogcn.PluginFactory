@@ -1,4 +1,4 @@
-﻿using PluginFactory;
+﻿using Xfrogcn.PluginFactory;
 using System;
 
 namespace TestPluginA

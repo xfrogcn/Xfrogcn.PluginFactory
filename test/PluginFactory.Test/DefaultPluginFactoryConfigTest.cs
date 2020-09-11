@@ -7,7 +7,7 @@ using System.Linq;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
 
-namespace PluginFactory.Test
+namespace Xfrogcn.PluginFactory.Test
 {
     [Trait("Group", "DefaultPluginFactory")]
     public class DefaultPluginFactoryConfigTest
@@ -44,7 +44,7 @@ namespace PluginFactory.Test
             Dictionary<string, string> dic = new Dictionary<string, string>()
             {
                 { "Plugins:Path", "Test/Plugins" },
-                { "Plugins:PluginFactory.Test.TestPluginB:IsEnabled", "0" }
+                { "Plugins:Xfrogcn.PluginFactory.Test.TestPluginB:IsEnabled", "0" }
             };
 
             var config = new ConfigurationBuilder()
@@ -78,7 +78,7 @@ namespace PluginFactory.Test
             Dictionary<string, string> dic = new Dictionary<string, string>()
             {
                 { "Plugins:Path", "Test/Plugins" },
-                { "Plugins:PluginFactory.Test.TestPluginE:ConfigA", "A" },
+                { "Plugins:Xfrogcn.PluginFactory.Test.TestPluginE:ConfigA", "A" },
                 { "Plugins:_Share:ConfigB", "B" }, //共享配置
             };
 

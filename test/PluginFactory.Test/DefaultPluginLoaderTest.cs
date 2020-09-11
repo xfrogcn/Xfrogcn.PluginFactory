@@ -1,4 +1,4 @@
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using Xunit;
 
-namespace PluginFactory.Test
+namespace Xfrogcn.PluginFactory.Test
 {
     [Trait("Group", "DefaultPluginLoader")]
     public class DefaultPluginLoaderTest

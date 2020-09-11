@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     /// <summary>
     /// 插件信息

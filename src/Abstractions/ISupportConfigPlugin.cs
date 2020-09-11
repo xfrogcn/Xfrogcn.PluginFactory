@@ -1,4 +1,4 @@
-﻿namespace PluginFactory
+﻿namespace Xfrogcn.PluginFactory
 {
     /// <summary>
     /// 支持配置的插件接口

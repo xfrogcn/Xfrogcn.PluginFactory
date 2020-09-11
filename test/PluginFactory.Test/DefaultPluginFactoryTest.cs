@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PluginFactory.Test
+namespace Xfrogcn.PluginFactory.Test
 {
     [Trait("Group", "DefaultPluginFactory")]
     public class DefaultPluginFactoryTest

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     /// <summary>
     /// 插件工厂

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     public interface IPlugin
     {

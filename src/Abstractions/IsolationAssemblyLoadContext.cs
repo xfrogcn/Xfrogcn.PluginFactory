@@ -6,7 +6,7 @@ using System.Runtime.Loader;
 
 [assembly: InternalsVisibleTo("PluginFactory.Abstractions.Test")]
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     /// <summary>
     /// 以隔离的方式加载程序集，每个加载的程序集可以有独立的依赖版本

@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     public class PluginInitContext : IPluginInitContext
     {

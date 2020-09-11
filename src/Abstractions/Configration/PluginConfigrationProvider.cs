@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     /// <summary>
     /// PluginConfigrationProvider从 <seealso cref="PluginFactoryConfigration"/> 配置中获取配置

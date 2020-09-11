@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     public abstract class PluginBase : IPlugin
     {

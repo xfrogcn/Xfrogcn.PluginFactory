@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PluginFactory.Abstractions.Test
+namespace Xfrogcn.PluginFactory.Abstractions.Test
 {
     [Trait("Group", "PluginConfigrationProvider")]
     public class PluginConfigrationProviderTest
@@ -34,7 +34,7 @@ namespace PluginFactory.Abstractions.Test
         {
             Dictionary<string, string> dic = new Dictionary<string, string>()
             {
-                { "Plugins:PluginFactory.Abstractions.Test.PluginConfigrationProviderTest.PluginA:Test","A"  }
+                { "Plugins:Xfrogcn.PluginFactory.Abstractions.Test.PluginConfigrationProviderTest.PluginA:Test","A"  }
             };
             var config = new ConfigurationBuilder()
                 .AddInMemoryCollection(dic)
@@ -66,7 +66,7 @@ namespace PluginFactory.Abstractions.Test
         {
             Dictionary<string, string> dic = new Dictionary<string, string>()
             {
-                { "Plugins:PluginFactory.Abstractions.Test.PluginConfigrationProviderTest.PluginB:Test","B"  },
+                { "Plugins:Xfrogcn.PluginFactory.Abstractions.Test.PluginConfigrationProviderTest.PluginB:Test","B"  },
                 { "Plugins:PluginB:Test2","B2"  }
             };
             var config = new ConfigurationBuilder()

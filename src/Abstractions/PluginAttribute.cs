@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple =false)]
     public class PluginAttribute : Attribute

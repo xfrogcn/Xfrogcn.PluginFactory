@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     public interface IPluginInitContext
     {

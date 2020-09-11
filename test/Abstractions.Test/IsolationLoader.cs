@@ -1,14 +1,14 @@
-using System;
+锘縰sing System;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
 using Xunit;
 
 
-namespace PluginFactory.Abstractions.Test
+namespace Xfrogcn.PluginFactory.Abstractions.Test
 {
-    [Collection("隔离加载")]
-    [Trait("Group", "隔离加载")]
+    [Collection("闅旂鍔犺浇")]
+    [Trait("Group", "闅旂鍔犺浇")]
     public class IsolationLoader
     {
         
@@ -19,7 +19,7 @@ namespace PluginFactory.Abstractions.Test
         string classBIsolationPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plugin-b-i");
         string classBIsolationErrorPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plugin-b-i-e");
 
-        [Fact(DisplayName = "加载无依赖库")]
+        [Fact(DisplayName = "鍔犺浇鏃犱緷璧栧簱")]
         public void Test1()
         {
             var loader = new IsolationAssemblyLoadContext(Path.Combine(classAIsolationPath, "ClassA/ClassA.dll"));
@@ -27,14 +27,14 @@ namespace PluginFactory.Abstractions.Test
             Assert.NotNull(assembly);
             var types = assembly.GetTypes();
 
-            // 无deps.json时将会回退通过Default方式载入
+            // 鏃燿eps.json鏃跺皢浼氬洖閫�閫氳繃Default鏂瑰紡杞藉叆
             loader = new IsolationAssemblyLoadContext(Path.Combine(classANormalPath, "ClassA.dll"));
             assembly = loader.Load();
             Assert.NotNull(assembly);
             types = assembly.GetTypes();
         }
 
-        [Fact(DisplayName = "加载有依赖库")]
+        [Fact(DisplayName = "鍔犺浇鏈変緷璧栧簱")]
         public void Test2()
         {
             var loader = new IsolationAssemblyLoadContext(Path.Combine(classBNormalPath, "ClassB.dll"));
@@ -56,7 +56,7 @@ namespace PluginFactory.Abstractions.Test
             Assert.NotEqual(types2[0].BaseType, types[0].BaseType);
     
 
-            // 默认载入器会自动从当前目录解析程序集
+            // 榛樿杞藉叆鍣ㄤ細鑷姩浠庡綋鍓嶇洰褰曡В鏋愮▼搴忛泦
             var loader2 = Assembly.LoadFile(Path.Combine(classBIsolationErrorPath, "ClassB/ClassB.dll"));
             assembly = loader.Load();
             Assert.NotNull(assembly);

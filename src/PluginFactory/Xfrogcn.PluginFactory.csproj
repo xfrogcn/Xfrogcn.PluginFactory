@@ -2,15 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Authors>王海波</Authors>
-    <Company>新空间（重庆）科技有限公司</Company>
+    <AssemblyName>Xfrogcn.PluginFactory</AssemblyName>
+    <PackageId>Xfrogcn.PluginFactory</PackageId>
+    <PackOnBuild>true</PackOnBuild>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-b1</Version>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Abstractions\PluginFactory.Abstractions.csproj" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="3.1.7" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.7" />
@@ -30,5 +27,8 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Abstractions\Xfrogcn.PluginFactory.Abstractions.csproj" />
   </ItemGroup>
 </Project>

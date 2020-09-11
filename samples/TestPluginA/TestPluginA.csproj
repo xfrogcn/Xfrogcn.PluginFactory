@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Abstractions\PluginFactory.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Abstractions\Xfrogcn.PluginFactory.Abstractions.csproj" />
   </ItemGroup>
-
 </Project>

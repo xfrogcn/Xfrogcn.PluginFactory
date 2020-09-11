@@ -17,13 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Abstractions\PluginFactory.Abstractions.csproj">
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\PluginFactory\PluginFactory.csproj" />
+    <ProjectReference Include="..\..\src\PluginFactory\Xfrogcn.PluginFactory.csproj" />
   </ItemGroup>
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="sh ./build-plugin.cmd" />
-  </Target>
-
 </Project>

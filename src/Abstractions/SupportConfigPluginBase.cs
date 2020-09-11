@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     /// <summary>
     /// 支持配置的插件基类

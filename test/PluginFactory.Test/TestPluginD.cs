@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PluginFactory.Test
+namespace Xfrogcn.PluginFactory.Test
 {
     public class TestPluginDOptions
     {

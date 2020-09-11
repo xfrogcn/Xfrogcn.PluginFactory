@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace PluginFactory.Test
+namespace Xfrogcn.PluginFactory.Test
 {
     public class TestPluginC : TestPluginB, ISupportInitPlugin
     {

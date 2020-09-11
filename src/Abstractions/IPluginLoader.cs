@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     /// <summary>
     /// 插件载入器

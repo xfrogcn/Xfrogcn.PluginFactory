@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PluginFactory.Abstractions.Test
+namespace Xfrogcn.PluginFactory.Abstractions.Test
 {
     [Trait("Group", "PluginConfigrationOptions")]
     public class PluginConfigrationOptionsTest

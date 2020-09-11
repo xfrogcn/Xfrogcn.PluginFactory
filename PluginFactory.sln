@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginFactory.Abstractions", "src\Abstractions\PluginFactory.Abstractions.csproj", "{DFAA6ADD-58E5-47AD-9277-A61B9809A083}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xfrogcn.PluginFactory.Abstractions", "src\Abstractions\Xfrogcn.PluginFactory.Abstractions.csproj", "{DFAA6ADD-58E5-47AD-9277-A61B9809A083}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0CBBE3B7-974D-4065-987B-2F36A6D1F8D6}"
 EndProject
@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassA", "test\ClassA\Class
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassB", "test\ClassB\ClassB.csproj", "{CEC58C66-A2BF-41E5-A897-1B095D798E66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginFactory.Abstractions.Test", "test\Abstractions.Test\PluginFactory.Abstractions.Test.csproj", "{472C9DF9-A102-4286-A9BF-DD36FFCB3C96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xfrogcn.PluginFactory.Abstractions.Test", "test\Abstractions.Test\Xfrogcn.PluginFactory.Abstractions.Test.csproj", "{472C9DF9-A102-4286-A9BF-DD36FFCB3C96}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginFactory", "src\PluginFactory\PluginFactory.csproj", "{9999A5B1-06ED-42EB-AA72-3EEBCD2FEAAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xfrogcn.PluginFactory", "src\PluginFactory\Xfrogcn.PluginFactory.csproj", "{9999A5B1-06ED-42EB-AA72-3EEBCD2FEAAA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginFactory.Test", "test\PluginFactory.Test\PluginFactory.Test.csproj", "{08409CE2-3EDA-4F50-ACCE-9BFB88839297}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xfrogcn.PluginFactory.Test", "test\PluginFactory.Test\Xfrogcn.PluginFactory.Test.csproj", "{08409CE2-3EDA-4F50-ACCE-9BFB88839297}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPluginA", "samples\TestPluginA\TestPluginA.csproj", "{024EA651-9C96-4669-8E20-00BDF6B9AB1C}"
 EndProject

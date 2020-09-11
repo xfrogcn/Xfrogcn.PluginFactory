@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace PluginFactory
+namespace Xfrogcn.PluginFactory
 {
     public interface IPluginContext
     {

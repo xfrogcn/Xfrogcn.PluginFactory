@@ -1,0 +1,21 @@
+<Project>
+  <PropertyGroup>
+    <PackageVersion>1.0.0-beta2020091101</PackageVersion>
+    <Authors>王海波</Authors>
+    <Copyright>王海波</Copyright>
+    <RepositoryUrl>https://github.com/xfrogcn/pluginfactory</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>Xfrogcn Plugin Factory</Product>
+
+    <!-- The SPDX name for the source license. See https://spdx.org/licenses/. -->
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+
+    <!-- Contact email address for NuGet packages and Linux installers. -->
+    <MaintainerEmail>xfrogcn@163.com</MaintainerEmail>
+
+    <IncludeSymbols>true</IncludeSymbols>
+  </PropertyGroup>
+</Project>

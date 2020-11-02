@@ -57,37 +57,39 @@ pluginfactory 是 .NET Core 下基于依赖注入实现的插件框架，此框�
 1. 创建插件项目（.NET Core 类库），如TestPluginA
 1. 添加`Xfrogcn.PluginFactory.Abstractions`包
 
-    ```nuget
-    dotnet add package Xfrogcn.PluginFactory.Abstractions
-    ```
+        ```nuget
+        dotnet add package Xfrogcn.PluginFactory.Abstractions
+        ```
 
 1. 创建插件类，如Plugin，从PluginBase继承
 
-    ```c#
-    public class Plugin : PluginBase
-    {
-        public override Task StartAsync(IPluginContext context)
+        ```c#
+        public class Plugin : PluginBase
         {
-            Console.WriteLine("插件A已启动");
-            return base.StartAsync(context);
-        }
+            public override Task StartAsync(IPluginContext context)
+            {
+                Console.WriteLine("插件A已启动");
+                return base.StartAsync(context);
+            }
 
-        public override Task StopAsync(IPluginContext context)
-        {
-            Console.WriteLine("插件B已启动");
-            return base.StopAsync(context);
+            public override Task StopAsync(IPluginContext context)
+            {
+                Console.WriteLine("插件B已启动");
+                return base.StopAsync(context);
+            }
         }
-    }
-    ```
+        ```
+
+    *启动或停止方法中可通过context中的ServiceProvider获取注入服务*
 
 1. 通过`PluginAttribute`特性设置插件的元数据
 
-    ```c#
-    [Plugin(Alias = "PluginA", Description = "测试插件")]
-    public class Plugin : PluginBase
-    {
-    }
-    ```
+        ```c#
+        [Plugin(Alias = "PluginA", Description = "测试插件")]
+        public class Plugin : PluginBase
+        {
+        }
+        ```
 
     *插件元数据以及插件载入的插件列表信息可以通过`IPluginLoader.PluginList`获取*
 
@@ -105,6 +107,100 @@ pluginfactory 是 .NET Core 下基于依赖注入实现的插件框架，此框�
 
 ### 编写支持初始化的插件
 
+在很多场景，我们需要在插件中控制宿主的依赖注入，如注入新的服务等，这时候我们可通过实现支持初始化的插件（`ISupportInitPlugin`）来实现，该接口的`Init`方法将在依赖注入构建之前调用，通过方法参数`IPluginInitContext`中的`ServiceCollection`可以控制宿主注入容器。
+
+    ```c#
+    [Plugin(Alias = "PluginA", Description = "测试插件")]
+    public class Plugin : PluginBase, ISupportInitPlugin
+    {
+        public void Init(IPluginInitContext context)
+        {
+            // 注入服务
+            //context.ServiceCollection.TryAddScoped<ICustomerService>();
+        }
+    }
+    ```
+
 ### 使用插件配置
 
+插件支持 .NET Core 扩展库中的Options及Configuration机制，你只需要从`SupportConfigPluginBase<TOptions>`类继承实现插件即可，其中TOptions泛型为插件的配置类型。插件配置自动从宿主配置或启用插件工厂时传入的配置中获取，插件配置位于配置下的Plugins节点，该节点下以插件类名称或插件别名（通过`PluginAttribute`特性指定）作为键名，此键之下为插件的配置，如以下配置文件：
+
+    ```appsettings.json
+    {
+        "Plugins": {
+            "PluginA": {
+                "TestConfig": "Hello World"
+            },
+
+        }
+    }
+    ```
+
+扩展PluginA实现配置：
+
+1. 定义配置类，如PluginOptions
+
+        ```c#
+        public class PluginOptions
+        {
+            public string TestConfig { get; set; }
+        }
+        ```
+
+2. 实现插件
+
+        ```c#
+        [Plugin(Alias = "PluginA", Description = "测试插件")]
+        public class Plugin : SupportConfigPluginBase<PluginOptions>, ISupportInitPlugin
+        {
+
+            public Plugin(IOptionsMonitor<PluginOptions> options) : base(options)
+            {
+            }
+
+            public void Init(IPluginInitContext context)
+            {
+                // 注入服务
+                //context.ServiceCollection.TryAddScoped<ICustomerService>();
+                Console.WriteLine($"Init 插件配置：{Options.TestConfig}");
+            }
+
+            public override Task StartAsync(IPluginContext context)
+            {
+                Console.WriteLine("插件A已启动");
+                Console.WriteLine($"StartAsync 插件配置：{Options.TestConfig}");
+                return base.StartAsync(context);
+            }
+
+            public override Task StopAsync(IPluginContext context)
+            {
+                Console.WriteLine("插件B已停止");
+                return base.StopAsync(context);
+            }
+        ```
+
+    *注意：在插件初始化方法中也可使用注入的配置*
+3. 跨插件配置
+
+有些配置可能需要在多个插件中共享，此时你可通过`Plugins`下的`_Share`节点进行配置，此节点下配置将会被合并到插件配置中，可通过PluginOptions进行访问。
+
+    ```appsettings.json
+    {
+        "Plugins": {
+            "PluginA": {
+            },
+            "_Share": {
+                "TestConfig": "Hello World"
+            }
+        }
+    }
+    ```
+
 ### 插件化 ASP.NET Core
+
+要让 ASP.NET Core 获取得到插件中的控制器，你只需要在插件的初始化方法`Init`中，向MVC注入插件程序集：
+
+    ```c#
+    context.ServiceCollection.AddMvcCore()
+        .AddApplicationPart(typeof(Plugin).Assembly);
+    ```

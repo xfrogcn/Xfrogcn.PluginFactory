@@ -31,7 +31,7 @@ pluginfactory 是 .NET Core 下基于依赖注入实现的插件框架，此框�
     builder.UsePluginFactory();
     ```
 
-`UsePluginFactory`具有多个重载版本，详细请查看[配置](./doc/Configuration.md)文档  
+`UsePluginFactory`具有多个重载版本，详细请查看[API](./doc/api.md)文档  
 默认配置下，将使用程序运行目录下的`Plugins`目录作为插件程序集目录, 使用宿主配置文件作为插件配置文件（通常为appsettings.json）  
 你也可以通过使用带有`Assembly`或`IEnumerable<Assembly>`参数的版本直接传入插件所在的程序集
 

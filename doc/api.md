@@ -225,6 +225,40 @@
 
 ## PluginInfo
 
+`PluginInfo`类用于保存插件的相关信息
+
+### Id属性
+
+- 说明：插件ID
+
+### Name属性
+
+- 说明：插件名称
+
+### Description属性
+
+- 说明：插件说明
+
+### Alias属性
+
+- 说明：插件别名
+
+### IsEnable属性
+
+- 说明：是否启用
+
+### PluginType属性
+
+- 说明：插件的类型信息
+
+### CanConfig顺序
+
+- 说明：插件是否可配置
+
+### CanInit属性
+
+- 说明：插件是否可初始化
+
 ## PluginBase
 
 ## SupportConfigPluginBase

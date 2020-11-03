@@ -151,7 +151,29 @@
 
 ## IPluginInitContext
 
+`IPluginInitContext`插件初始化上下文，由支持初始化的插件接口[ISupportInitPlugin](#ISupportInitPlugin)的Init方法使用
+
+### PluginPath属性
+
+- 说明：只读，插件路径
+
+### PluginLoader属性
+
+- 说明：只读，当前关联的插件载入器, 请参考[IPluginLoader](#IPluginLoader)
+
+### ServiceCollection属性
+
+- 说明：只读，应用的依赖注入服务容器，通过此属性可注入新的服务
+
+### InitServiceProvider属性
+
+- 说明：只读，初始化所使用的服务提供器，通过此属性可获取依赖的其他服务，*注意通过此提供器可获取初始化插件工厂方法之前所注入的服务。*
+
 ## IPlugin
+
+
+
+## ISupportInitPlugin
 
 ## ISupportConfigPlugin
 

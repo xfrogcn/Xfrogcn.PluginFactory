@@ -171,7 +171,21 @@
 
 ## IPlugin
 
+`IPlugin`是插件的基础接口，所有插件需实现此接口
 
+### StartAsync(IPluginContext context)
+
+- 说明：启动插件
+- 参数：
+  - context, [IPluginContext](#IPluginContext), 插件上下文
+- 返回：Task
+
+### Task StopAsync(IPluginContext context)
+
+- 说明：停止插件
+- 参数：
+  - context, [IPluginContext](#IPluginContext), 插件上下文
+- 返回：Task
 
 ## ISupportInitPlugin
 

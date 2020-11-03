@@ -189,6 +189,14 @@
 
 ## ISupportInitPlugin
 
+`ISupportInitPlugin`接口用于实现插件的初始化机制
+
+### Init(IPluginInitContext context)
+
+- 说明：插件初始化
+- 参数：
+  - context：[IPluginInitContext](#IPluginInitContext), 插件初始化上下文
+
 ## ISupportConfigPlugin
 
 ## PluginFactoryOptions

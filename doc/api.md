@@ -203,7 +203,25 @@
 
 ## PluginFactoryOptions
 
+`PluginFactoryOptions`是插件工厂的配置类型
 
+### PluginPath属性
+
+- 说明：获取或设置插件工厂所使用的插件路径
+
+### FileProvider属性
+
+- 说明：获取或设置插件载入时所使用的文件提供器，默认将使用`PhysicalFileProvider`提供器
+
+### DisabledPluginList属性
+
+- 说明，只读，获取当前被禁用的插件列表
+
+### AddAssembly(Assembly assembly)
+
+- 说明：添加插件程序集
+- 参数：
+  - assembly：Assembly，插件程序集
 
 ## PluginInfo
 

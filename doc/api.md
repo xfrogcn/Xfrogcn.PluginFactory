@@ -199,7 +199,11 @@
 
 ## ISupportConfigPlugin
 
+`ISupportConfigPlugin`接口用于实现插件的配置机制，它是泛型接口，泛型参数为`TOptions`，表示插件的配置类型
+
 ## PluginFactoryOptions
+
+
 
 ## PluginInfo
 

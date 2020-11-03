@@ -261,6 +261,28 @@
 
 ## PluginBase
 
+`PluginBase`插件基类，实现了[IPlugin](#IPlugin)接口，你可以从此类继承，然后重写相应的方法
+
 ## SupportConfigPluginBase
 
+`SupportConfigPluginBase`支持配置的插件基类，从`PluginBase`继承，并实现了`ISupportConfigPlugin&lt;TOptions&gt;`方法，继承此类，必须提供支持IOptionsMonitor&lt;TOptions&GT; options参数的构造函数，以传入插件配置。
+
 ## PluginAttribute
+
+`PluginAttribute`特性，用于设置插件的相关信息。
+
+### Id属性
+
+- 说明：插件ID
+
+### Alias属性
+
+- 说明：插件别名
+
+### Name属性
+
+- 说明：插件名称
+
+### Description属性
+
+- 说明：插件描述

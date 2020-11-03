@@ -4,6 +4,8 @@ pluginfactory 是 .NET Core 下基于依赖注入实现的插件框架，此框�
 
 ## 使用向导
 
+示例项目可参考：`Xfrogcn.PluginFactory.Example` [Gitee地址](https://gitee.com/WuYeCai/Xfrogcn.PluginFactory.Example) [Github地址](https://github.com/xfrogcn/Xfrogcn.PluginFactory.Example)
+
 ### 安装
 
 在主程序项目中添加`Xfrogcn.PluginFactory`包

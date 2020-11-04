@@ -1,5 +1,7 @@
 # .NET Core 插件框架
 
+pluginfactory 是 .NET Core 下基于依赖注入实现的插件框架，此框架是插件化开发与依赖注入的完美集合，同时融入了 .NET Core 中的配置机制，可以很好地与 ASP.NET Core 等框架融合。
+
 - [.NET Core 插件框架](#net-core-插件框架)
   - [使用向导](#使用向导)
     - [安装](#安装)
@@ -12,7 +14,6 @@
     - [使用插件配置](#使用插件配置)
     - [插件化 ASP.NET Core](#插件化-aspnet-core)
 
-pluginfactory 是 .NET Core 下基于依赖注入实现的插件框架，此框架是插件化开发与依赖注入的完美集合，同时融入了 .NET Core 中的配置机制，可以很好地与 ASP.NET Core 等框架融合。
 
 ## 使用向导
 
@@ -57,7 +58,7 @@ pluginfactory 是 .NET Core 下基于依赖注入实现的插件框架，此框�
         });
     ```
 
-`AddPluginFactory`具有多个重载版本，详细请查看[配置](./doc/Configuration.md)文档
+`AddPluginFactory`具有多个重载版本，详细请查看[API](./doc/api.md)文档
 默认配置下，将使用程序运行目录下的`Plugins`目录作为插件程序集目录
 
 `注意：` AddPluginFactory方法`不会`使用默认的配置文件作为插件配置，你需要显式地传入`IConfiguration`, 如果是在 ASP.NET Core 环境中，你可以在Startup类中直接获取到

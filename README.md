@@ -89,7 +89,7 @@ pluginfactory 是 .NET Core 下基于依赖注入实现的插件框架，此框�
 
             public override Task StopAsync(IPluginContext context)
             {
-                Console.WriteLine("插件B已启动");
+                Console.WriteLine("插件A已停止");
                 return base.StopAsync(context);
             }
         }
@@ -189,7 +189,7 @@ pluginfactory 是 .NET Core 下基于依赖注入实现的插件框架，此框�
 
             public override Task StopAsync(IPluginContext context)
             {
-                Console.WriteLine("插件B已停止");
+                Console.WriteLine("插件A已停止");
                 return base.StopAsync(context);
             }
         ```

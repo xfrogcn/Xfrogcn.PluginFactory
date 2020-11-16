@@ -1,4 +1,4 @@
-dotnet publish ../../samples/TestPluginA -o ./bin/Debug/netcoreapp3.1/Plugins
-rm -f ./bin/Debug/netcoreapp3.1/Plugins/Microsoft.*
-rm -f ./bin/Debug/netcoreapp3.1/Plugins/PluginFactory.*
-rm -f ./bin/Debug/netcoreapp3.1/Plugins/*.json
+dotnet publish ../../samples/TestPluginA -o ./bin/Debug/net5.0/Plugins
+rm -f ./bin/Debug/net5.0/Plugins/Microsoft.*
+rm -f ./bin/Debug/net5.0/Plugins/Xfrogcn.PluginFactory.*
+rm -f ./bin/Debug/net5.0/Plugins/*.json

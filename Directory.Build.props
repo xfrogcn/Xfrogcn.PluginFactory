@@ -5,6 +5,7 @@
     <Copyright>王海波</Copyright>
     <RepositoryUrl>https://github.com/xfrogcn/pluginfactory</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup>

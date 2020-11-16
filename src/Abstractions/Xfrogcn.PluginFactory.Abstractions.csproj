@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Xfrogcn.PluginFactory.Abstractions</AssemblyName>
     <RootNamespace>Xfrogcn.PluginFactory</RootNamespace>
     <PackageId>Xfrogcn.PluginFactory.Abstractions</PackageId>
@@ -10,15 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.7" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="3.1.7" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.7" />
-    <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.7.0">
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.8.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.7" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configration\" />

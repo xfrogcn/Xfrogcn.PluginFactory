@@ -21,7 +21,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xfrogcn.PluginFactory", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xfrogcn.PluginFactory.Test", "test\PluginFactory.Test\Xfrogcn.PluginFactory.Test.csproj", "{08409CE2-3EDA-4F50-ACCE-9BFB88839297}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPluginA", "samples\TestPluginA\TestPluginA.csproj", "{024EA651-9C96-4669-8E20-00BDF6B9AB1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPluginA", "samples\TestPluginA\TestPluginA.csproj", "{024EA651-9C96-4669-8E20-00BDF6B9AB1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FD64627A-57ED-467B-B455-8A496D44FE4D}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

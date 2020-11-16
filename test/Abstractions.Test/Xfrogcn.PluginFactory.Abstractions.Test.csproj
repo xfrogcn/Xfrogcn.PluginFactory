@@ -5,6 +5,7 @@
 
     <AssemblyName>PluginFactory.Abstractions.Test</AssemblyName>
     <RootNamespace>Xfrogcn.PluginFactory.Abstractions.Test</RootNamespace>
+    <PackageIcon>package-icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,5 +27,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Abstractions\Xfrogcn.PluginFactory.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\package-icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>

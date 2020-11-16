@@ -6,6 +6,8 @@
     <PackageId>Xfrogcn.PluginFactory.Abstractions</PackageId>
     <PackOnBuild>true</PackOnBuild>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>whb-vs-cert.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,4 +25,5 @@
   <ItemGroup>
     <Folder Include="Configration\" />
   </ItemGroup>
+
 </Project>

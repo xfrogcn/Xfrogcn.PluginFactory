@@ -1,11 +1,12 @@
 <Project>
   <PropertyGroup>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>2.0.0</PackageVersion>
     <Authors>王海波</Authors>
     <Copyright>王海波</Copyright>
     <RepositoryUrl>https://github.com/xfrogcn/pluginfactory</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageIcon>package-icon.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -19,4 +20,10 @@
 
     <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\package-icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 </Project>

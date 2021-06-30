@@ -78,7 +78,7 @@ namespace Xfrogcn.PluginFactory
                 Stopwatch sw = new Stopwatch();
                 try
                 {
-                    await plugin.StartAsync(ctx);
+                    await plugin.StopAsync(ctx);
                 }
                 catch (Exception e)
                 {

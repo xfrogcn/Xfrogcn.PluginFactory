@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>2.0.1</PackageVersion>
     <Authors>王海波</Authors>
     <Copyright>王海波</Copyright>
     <RepositoryUrl>https://github.com/xfrogcn/pluginfactory</RepositoryUrl>
